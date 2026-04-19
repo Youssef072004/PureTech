@@ -6,6 +6,9 @@ skinparam linetype ortho
 actor "Client" as C
 actor "Technicien" as T
 actor "Administrateur" as A
+actor "Visiteur" as V
+
+V <|-- C
 
 rectangle "Système Pure Tech" {
     package "Client" {
@@ -48,6 +51,7 @@ UC12 ..> Auth : <<include>>
 
 ' Associations Acteurs -> Use Cases
 C -- UC0
+V -- UC0
 C -- UC1
 C -- UC2
 C -- UC3
