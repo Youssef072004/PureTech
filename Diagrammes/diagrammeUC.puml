@@ -1,0 +1,66 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam linetype ortho
+
+actor "Client" as C
+actor "Technicien" as T
+actor "Administrateur" as A
+
+rectangle "Système Pure Tech" {
+    package "Client" {
+        (S'inscrire) as UC0
+        (Consulter catalogue) as UC1
+        (Passer commande) as UC2
+        (Déclarer une panne) as UC3
+        (Suivre l'état du ticket) as UC4
+    }
+
+    package "Technicien" {
+        (Visualiser planning interventions) as UC5
+        (Saisir rapport d'intervention) as UC6
+    }
+
+    package "Administrateur" {
+        (Gérer les stocks) as UC7
+        (Recevoir alerte rupture) as UC8
+        (Affecter technicien) as UC9
+        (Gérer comptes utilisateurs) as UC10
+        (Générer facture) as UC11
+        (Consulter Dashboard CA) as UC12
+    }
+
+    (S'authentifier) as Auth
+}
+
+' Authentification requise pour la plupart des actions
+UC2 ..> Auth : <<include>>
+UC3 ..> Auth : <<include>>
+UC4 ..> Auth : <<include>>
+UC5 ..> Auth : <<include>>
+UC6 ..> Auth : <<include>>
+UC7 ..> Auth : <<include>>
+UC8 ..> Auth : <<include>>
+UC9 ..> Auth : <<include>>
+UC10 ..> Auth : <<include>>
+UC11 ..> Auth : <<include>>
+UC12 ..> Auth : <<include>>
+
+' Associations Acteurs -> Use Cases
+C -- UC0
+C -- UC1
+C -- UC2
+C -- UC3
+C -- UC4
+
+T -- UC5
+T -- UC6
+
+A -- UC7
+A -- UC8
+A -- UC9
+A -- UC10
+A -- UC11
+A -- UC12
+
+@enduml
