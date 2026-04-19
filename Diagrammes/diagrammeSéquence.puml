@@ -1,0 +1,32 @@
+@startuml
+actor Client as C
+participant "Interface SAV" as UI
+participant "GestionnaireTickets" as GT
+participant "Administrateur" as A
+database "Base de Données" as DB
+
+C -> UI : Remplir formulaire panne(machineID, description)
+activate UI
+UI -> GT : creerTicket(machineID, desc)
+activate GT
+GT -> DB : Enregistrer nouveau ticket (statut: EN_ATTENTE)
+activate DB
+DB --> GT : Confirmation ID_Ticket
+deactivate DB
+GT --> UI : Ticket créé avec succès
+deactivate UI
+
+GT -> A : Notifier nouveau ticket reçu
+A -> GT : consulterDetails(ID_Ticket)
+A -> GT : affecterTechnicien(ID_Ticket, techID)
+
+alt Stock disponible
+    GT -> DB : majStatut(AFFECTÉ)
+    GT --> C : Envoyer notification "Technicien en route"
+else Stock épuisé
+    GT -> DB : majStatut(EN_ATTENTE_PIECE)
+    GT --> C : Envoyer notification "Retard : pièce manquante"
+end
+
+deactivate GT
+@enduml
