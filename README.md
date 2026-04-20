@@ -40,3 +40,7 @@ Azza Hammouri : Gestion des Stocks – Suivi en temps réel des machines et des 
 
 
 Minyar Ouerghi : Facturation et Dashboard Admin – Génération automatique de factures et statistiques de performance pour l'administrateur.
+
+
+
+Link Figma : https://www.figma.com/make/bmlSwLZHpe1OjZHfvg8mCF/PureTech-App-Visual-Identity?t=X17jeKJaZyqinWo7-20&fullscreen=1&preview-route=%2Fregister
