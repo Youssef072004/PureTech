@@ -22,19 +22,21 @@ Technicien (Pure Tech) : Gère les interventions sur site et remplit les rapport
 
 Administrateur (Responsable Pure Tech) : Supervise les ventes, gère les stocks et affecte les missions aux techniciens.
 
+
+visiteur :
+
 4. Les 5 Fonctionnalités principales (1 par membre)
 
 
-Membre 1 [Nom du Responsable] : Gestion du Catalogue et des Commandes – Interface permettant aux clients de commander des machines et de suivre leurs achats.
+Youssef Rezgui : authentification 
+
+Hamdi Loussif : Service Après-Vente (SAV) et Gestion du Catalogue et des Commandes
 
 
-Membre 2 [Nom du Responsable] : Service Après-Vente (SAV) – Module de déclaration de pannes et de suivi des tickets pour les clients.
+Taha ben Alouene  : Gestion des Interventions – Interface pour le technicien afin de gérer son planning et saisir ses rapports de maintenance.
 
 
-Membre 3 [Nom du Responsable] : Gestion des Interventions – Interface pour le technicien afin de gérer son planning et saisir ses rapports de maintenance.
+Azza Hammouri : Gestion des Stocks – Suivi en temps réel des machines et des pièces de rechange avec alertes de seuil critique.
 
 
-Membre 4 [Nom du Responsable] : Gestion des Stocks – Suivi en temps réel des machines et des pièces de rechange avec alertes de seuil critique.
-
-
-Membre 5 [Nom du Responsable] : Facturation et Dashboard Admin – Génération automatique de factures et statistiques de performance pour l'administrateur.
+Minyar Ouerghi : Facturation et Dashboard Admin – Génération automatique de factures et statistiques de performance pour l'administrateur.
