@@ -7,6 +7,7 @@ public class Commande {
     private Date dateCommande;
     private String statut;
     private double montantTotal;
+    private String montantFormate;
     private List<LigneCommande> lignes;
     private Facture facture;
 
@@ -53,6 +54,14 @@ public class Commande {
 
     public void setMontantTotal(double montantTotal) {
         this.montantTotal = montantTotal;
+    }
+
+    public String getMontantFormate() {
+        return montantFormate;
+    }
+
+    public void setMontantFormate(String montantFormate) {
+        this.montantFormate = montantFormate;
     }
 
     public List<LigneCommande> getLignes() {
