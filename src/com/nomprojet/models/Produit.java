@@ -4,6 +4,7 @@ public class Produit {
     private String description;
     private double prix;
     private int quantiteStock;
+    private String devise;
 
     public Produit() {
     }
@@ -54,5 +55,13 @@ public class Produit {
 
     public void setQuantiteStock(int quantiteStock) {
         this.quantiteStock = quantiteStock;
+    }
+
+    public String getDevise() {
+        return devise;
+    }
+
+    public void setDevise(String devise) {
+        this.devise = devise;
     }
 }

@@ -14,8 +14,11 @@ public abstract class Utilisateur {
         this.motDePasse = motDePasse;
     }
 
-    public boolean authentifier() {
-        return false;
+    public boolean authentifier(String emailSaisi, String motDePasseSaisi) {
+        if (emailSaisi == null || motDePasseSaisi == null || this.email == null || this.motDePasse == null) {
+            return false;
+        }
+        return this.email.equals(emailSaisi) && this.motDePasse.equals(motDePasseSaisi);
     }
 
     // Getters et Setters

@@ -11,6 +11,7 @@ public class Ticket {
     private Technicien technicien;
     private String rapport;
     private String coutReparation;
+    private int idTechnicien;
 
     public Ticket() {
     }
@@ -112,5 +113,13 @@ public class Ticket {
 
     public void setCoutReparation(String coutReparation) {
         this.coutReparation = coutReparation;
+    }
+
+    public int getIdTechnicien() {
+        return idTechnicien;
+    }
+
+    public void setIdTechnicien(int idTechnicien) {
+        this.idTechnicien = idTechnicien;
     }
 }
