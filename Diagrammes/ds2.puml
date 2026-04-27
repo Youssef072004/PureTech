@@ -1,0 +1,86 @@
+@startuml
+skinparam ParticipantPadding 10
+skinparam BoxPadding 10
+autonumber
+
+box "Terrain" #f0f8ff
+actor Technicien as T
+participant "Interface Tablette" as UI_T
+end box
+
+box "Système PURETECH" #ffffff
+participant "GestionnaireTickets" as GT
+participant "GestionnaireStock" as GS
+participant "SystèmeFacturation" as SF
+database "Base de Données" as DB
+end box
+
+box "Back-Office" #fff5ee
+actor Administrateur as A
+participant "Interface Admin" as UI_A
+end box
+
+== Fin d'Intervention et Consommation Stock ==
+T -> UI_T : Saisir pièces utilisées et rapport (ID_Ticket, listePièces)
+activate UI_T
+UI_T -> GT : finaliserIntervention(ID_Ticket, listePièces, rapport)
+activate GT
+
+    GT -> GS : decrementerStock(listePièces)
+    activate GS
+    GS -> DB : MAJ quantités stock
+    activate DB
+    deactivate DB
+    
+    |||
+    note right of GS : Vérification seuils critiques (US7)
+    opt Seuil critique atteint pour une pièce
+        GS -> DB : Enregistrer Alerte Stock
+        GS -> A : Notification Push/Email "Alerte Stock"
+    end
+    |||
+    
+    GS --> GT : Confirmation stock mis à jour (US8)
+    deactivate GS
+
+GT -> DB : MAJ Ticket (Statut: CLÔTURÉ, Rapport)
+GT --> UI_T : Intervention clôturée
+deactivate GT
+UI_T --> T : Afficher confirmation
+deactivate UI_T
+
+== Génération Automatique Facture (US9) ==
+note right of GT : Triggers automatique après clôture
+GT -> SF : genererFactureBrouillon(ID_Ticket)
+activate SF
+SF -> DB : Recuperer détails intervention (temps, pièces, prix)
+activate DB
+DB --> SF : Données facturation
+deactivate DB
+
+SF -> SF : Calculer Totaux (HT, TVA, TTC)
+SF -> DB : Créer Facture (Statut: BROUILLON)
+SF --> GT : Facture créée ID_Facture
+deactivate SF
+
+== Validation et Envoi par Admin ==
+A -> UI_A : Consulter factures "Brouillon"
+activate UI_A
+UI_A -> DB : Recuperer factures brouillons
+DB --> UI_A : Liste factures
+deactivate UI_A
+
+A -> UI_A : Valider et Envoyer Facture(ID_Facture)
+activate UI_A
+UI_A -> SF : finaliserFacture(ID_Facture)
+activate SF
+SF -> SF : Générer PDF Facture (avec signature tech)
+SF -> DB : MAJ Statut Facture (Statut: ENVOYÉE, cheminPDF)
+SF -> Client : Envoyer Facture par Email
+
+SF --> UI_A : Confirmation envoi
+deactivate SF
+UI_A --> A : Afficher succès
+deactivate UI_A
+
+@enduml
